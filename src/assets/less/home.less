@@ -1,0 +1,74 @@
+.home {
+    .user {
+      display: flex;
+      align-items: center;
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.25rem;
+      border-bottom: .0625rem solid #ccc;
+      img {
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+        margin-right: 2.5rem;
+      }
+      &info {
+        .name {
+          font-size: 1.125rem;
+          margin-bottom: .625rem;
+        }
+        .access {
+          color: #999999;
+        }
+      }
+    }
+    .login-info {
+      p {
+        line-height: 1.75rem;
+        font-size: .875rem;
+        color: #999999;
+        span {
+          color: #666666;
+          margin-left: 3.75rem;
+        }
+      }
+    }
+    .num {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      .el-card {
+        width: 32%;
+        margin-bottom: 1.25rem;
+        height: 5rem;
+      }
+      .icon {       
+        height: 5rem;
+        width: 5rem;
+        color: #fff;
+      }
+
+      .detail {
+        margin-top: .625rem;
+        margin-left: .9375rem;
+        display: inline-block;
+        vertical-align: top;
+        .num {
+          margin: 0;
+          font-size: 1.5625rem;
+        }
+        .txt {
+          font-size: .875rem;
+          text-align: center;
+          color: #999999;
+        }
+      }
+    }
+    .graph {
+      margin-top: 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      .el-card {
+        width: 48%;
+      }
+    }
+  }
