@@ -107,3 +107,26 @@ export const getNewsData = (params)=>{
     data:params
   })
 }
+
+export const addNews = (params)=>{
+  return axios.request({
+    url:'/news/addNews',
+    method:'post',
+    data:params
+  })
+}
+
+export const editNews = (params)=>{
+  return axios.request({
+    url:'/news/editNews',
+    method:'post',
+    data:params
+  })
+}
+export const delNews = (params)=>{
+  return axios.request({
+    url:'/news/delNews',
+    method:'post',
+    data:params
+  })
+}

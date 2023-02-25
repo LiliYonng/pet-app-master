@@ -32,7 +32,7 @@ const tableLable =  ref([
   {
     name: 'content',
     label: '内容',
-    width: 200
+    width: 400
   }
 ]);
 const rules = ref({

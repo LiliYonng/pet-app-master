@@ -22,7 +22,7 @@
         v-else-if="item.type === 'input' && item.requiredType === 'num'"
         v-model.number="formData[item.name]"
         :placeholder="'请输入' + item.label"
-        :disabled="item.disabled"
+        :disabled="item.disabled && operation=='edit'"
       />
       <el-switch v-else-if="item.type === 'switch'" v-model="formData[item.name]" />
       <el-date-picker
@@ -33,7 +33,7 @@
         v-model="formData[item.name]"
       />
       <el-select
-        v-else-if="item.type === 'select'"
+        v-else-if="item.type === 'select' && operation =='edit'"
         placeholder="请选择"
         @change="handleChange"
         v-model="formData[item.name]"
@@ -45,7 +45,10 @@
           :value="item.value"
         ></el-option>
       </el-select>
-      <common-upload v-else-if="item.type ==='img'" :limitData=1 :operation="operation"/>
+      <common-upload v-else-if="item.type ==='img'"
+        @updateCover="handleCover"
+        :link="formData[item.name]" 
+        :operation="operation"/>
       <el-input v-else v-model="formData[item.name]" :placeholder="'请输入' + item.label" type="item.type"></el-input>
     </el-form-item>
     <el-form-item><slot></slot></el-form-item>
@@ -72,6 +75,10 @@ watch(()=>[props.formData.colors, props.formData.sizes], ([newColor, newSize], [
     props.formData.sum_store = '120'
   }
 });
+const handleCover = (newLink)=>{
+  console.log(newLink)
+  props.formData.cover = newLink;
+}
 const submitForm = () => {
   if (!form.value) return;
   form.value.validate((valid) => {
