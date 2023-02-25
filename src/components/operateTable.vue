@@ -114,27 +114,29 @@ export default {
     editData (row){
     this.showForm = true;
     this.operation = "edit";
-    const colorsAry = row.colors.split(',')
     // const form = JSON.parse(JSON.stringify(this.operate_formLable))
 
     // 设置表单的选项
-    const form = this.formLabel
-    form[2].options=[]
-    form[3].options=[]
-    colorsAry.forEach((item,ind)=>{
-      form[2].options.push({
-        label:item,
-        value:ind
+    if(row.sizes && row.colors){
+          const colorsAry = row.colors.split(',')
+        const form = this.formLabel
+        form[2].options=[]
+        form[3].options=[]
+        colorsAry.forEach((item,ind)=>{
+          form[2].options.push({
+            label:item,
+            value:ind
+          })
+        })
+        const sizesAry = row.sizes.split(',')
+        sizesAry.forEach((item,ind)=>{
+            form[3].options.push({
+            label:item,
+            value:ind
+          })
+        // this.operate_formLable = form
       })
-    })
-    const sizesAry = row.sizes.split(',')
-    sizesAry.forEach((item,ind)=>{
-        form[3].options.push({
-        label:item,
-        value:ind
-      })
-    // this.operate_formLable = form
-  })
+    }
 
   this.operate_form = { ...row };//将该行数据写入编辑表
   console.log('row----',this.operate_form)

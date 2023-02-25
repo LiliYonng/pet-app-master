@@ -107,11 +107,6 @@ const operate_formLable = ref([
     requiredType: "num",
     disabled:true,
   },
-  {
-    name: 'cover',
-    label: '图片链接',
-    type:'text'
-  },
     {
     name: 'cover',
     label: '封面图片',
@@ -136,9 +131,10 @@ const handleAdd = (form)=>{
               type: "success",
               message: "添加成功",
             });
-      })
+            getData();
+      }
+      )
     .catch(err=>alert(err));
-    getData();
 }
 const handleEdit=(form)=>{
       editMall(form)

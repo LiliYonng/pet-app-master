@@ -1,7 +1,7 @@
 
 export default {
   state: {
-    isCollapse: true,
+    isCollapse: false,
     active: null,
     tabList: [
       {

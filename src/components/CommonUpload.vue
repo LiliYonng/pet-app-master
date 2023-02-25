@@ -1,7 +1,7 @@
 
 <template>
 <div>
-  <el-input v-if="operation==='add'" style="width:200px;display:block;"  v-model="imgLink" :placeholder="'图片网络链接'" type="text"></el-input>
+  <el-input style="width:200px;display:block;"  v-model="imgLink" :placeholder="'输入链接或点击上传'" type="text"></el-input>
 <el-upload
     class="upload-demo"
     action="https://jsonplaceholder.typicode.com/posts/"
@@ -21,26 +21,50 @@
   export default {
     data() {
       return {
+        fileList: [],
         imgLink:'',
-        fileList: []
       };
     },
-    props:['limitData','operation'],
+    emits: ['updateCover'],
+    props:['link','operation'],
+    watch:{
+      link:{
+        handler: function(newVal){
+          this.imgLink = newVal;
+          if(!newVal){
+            this.fileList = []
+          }
+        },
+        immediate:true
+      }
+    },
+    mounted() {
+      if(this.link){
+        this.imgLink = this.link
+        this.fileList.push({
+          name:'cover',
+          url:this.link
+        })
+      }
+    },
     methods: {
       handleRemove(file, fileList) {
+        this.imgLink = ''
         console.log(file, fileList);
+        console.log('link',this.link);
       },
       handlePreview(file) {
         console.log(file);
       },
       handleExceed(){
-                   ElMessage({
+      ElMessage({
               type: "fail",
               message: "超出限制",
             });
       },
       handleSuccess(file,list){
-        console.log('文件----',list)
+        this.imgLink = list.url
+        this.$emit('updateCover',this.imgLink)
       }
     }
   }
