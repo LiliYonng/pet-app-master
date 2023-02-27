@@ -128,4 +128,5 @@ export function useEchart(option, chart) {
     }
   }
   watchEffect(setChart)
+  return myChart
 }

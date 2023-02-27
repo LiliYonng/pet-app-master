@@ -53,6 +53,7 @@ const selectMenu = (item) => {
 };
 const logout = () => {
   localStorage.removeItem('refreshToken');
+  Store.commit("clearTabs");
   Store.commit("clearToken");
   Store.commit("clearMenu");
   Store.commit("clearUserInfo");

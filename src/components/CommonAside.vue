@@ -6,7 +6,7 @@
     background-color="#545c64"
     text-color="#fff"
     active-text-color="#ffd04b"
-    :unique-opened="true"
+    :default-openeds="defaultOpen"
     @open="handleSubOpen"
   >
     <h3>{{ isCollapse ? "后台" : "商域后台管理系统" }}</h3>
@@ -22,9 +22,11 @@
     </el-menu-item>
 
     <el-sub-menu v-for="item in hasChildren" :key="item.path" :index="item.name">
-      <template #title
-        ><component class="icon" :is="$icon[item.icon]" />
-        <span slot="title">{{ item.label }}</span>
+      <template #title>
+       <el-icon>
+       <component class="icon" :is="$icon[item.icon]"/>
+       </el-icon>
+        <span>{{ item.label }}</span>
       </template>
 
       <el-menu-item-group

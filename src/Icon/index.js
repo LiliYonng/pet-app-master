@@ -10,7 +10,10 @@ import {
   UserFilled,
   Briefcase,
   HomeFilled,
-  Management
+  Management,
+  TrendCharts,
+  Grid,
+  Histogram
 } from '@element-plus/icons-vue'
 
 const autoIcon = reactive({
@@ -22,6 +25,9 @@ const autoIcon = reactive({
   UserFilled,
   Briefcase,
   HomeFilled,
-  Management
+  Management,
+  TrendCharts,
+  Grid,
+  Histogram
 })
 export default autoIcon
