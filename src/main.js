@@ -10,8 +10,8 @@ import {btnPermission} from '@/directives/permission'
 store.commit('getMenu', router)
 store.commit('getUserInfo')
 store.commit('getToken')
-store.commit('getTap')
-store.commit('getBtnPermission');
+store.commit('getTap') // 恢复原有的tap
+store.commit('getBtnPermission'); // 恢复原有的permission
 router.beforeEach((to, from, next) => {
   store.commit('getToken')
   const token = store.state.user.token

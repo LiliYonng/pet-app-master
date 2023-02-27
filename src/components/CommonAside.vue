@@ -1,17 +1,19 @@
 <template>
   <el-menu
-    default-active="1"
+    :default-active=activeName
     class="el-menu-vertical-demo"
     :collapse="isCollapse"
     background-color="#545c64"
     text-color="#fff"
     active-text-color="#ffd04b"
+    :unique-opened="true"
+    @open="handleSubOpen"
   >
     <h3>{{ isCollapse ? "后台" : "商域后台管理系统" }}</h3>
 
     <el-menu-item
       v-for="item in noChildren"
-      :index="item.path"
+      :index="item.name"
       :key="item.path"
       @click="clickMenu(item)"
     >
@@ -19,7 +21,7 @@
       <template #title>{{ item.label }}</template>
     </el-menu-item>
 
-    <el-sub-menu v-for="item in hasChildren" :key="item.path" :index="item.path">
+    <el-sub-menu v-for="item in hasChildren" :key="item.path" :index="item.name">
       <template #title
         ><component class="icon" :is="$icon[item.icon]" />
         <span slot="title">{{ item.label }}</span>
@@ -30,7 +32,7 @@
         :key="subItem.path"
         @click="clickMenu(subItem)"
       >
-        <el-menu-item :index="subIndex">
+        <el-menu-item :index="subItem.name">
           <component class="icon" :is="$icon[subItem.icon]" />
           {{ subItem.label }}</el-menu-item
         >
@@ -47,6 +49,7 @@ import { useStore } from "vuex";
 const Router = useRouter();
 const Store = useStore();
 const menu = ref([]);
+const defaultOpen =ref(['chart'])
 const isCollapse = computed(()=>{
   return store.state.tab.isCollapse;
 })
@@ -54,9 +57,11 @@ const noChildren = computed(() => {
   return menu.value.filter((item) => !item.children);
 });
 const hasChildren = computed(() => {
-  return menu.value.filter((item) => item.children);
+  return menu.value.filter((item) => {
+    return item.children});
 });
 const clickMenu = (item) => {
+  console.log('点击菜单',item)
   Store.commit("selectMenu", item);
   Router.push({
     name: item.name,
@@ -64,9 +69,9 @@ const clickMenu = (item) => {
 };
 const activeName = computed(() => {
   const active = Store.state.tab.active;
-  return active ? active.name : null;
+  console.log('首次激活',active.name)
+  return active ? active.name : 'home';
 });
-
 onMounted(() => {
   menu.value = store.state.menu.menuData;
 });
