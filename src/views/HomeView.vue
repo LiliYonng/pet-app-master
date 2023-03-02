@@ -12,7 +12,7 @@
         </div>
         <div class="login-info">
           <p>
-            上次登陆的时间:<span>{{ userInfo.lastDate }}</span>
+            上次登陆的时间:<span>{{ $formateDate(userInfo.lastDate) }}</span>
           </p>
           <p>
             上次登陆的地点:<span>{{ userInfo.lastLocation }}</span>

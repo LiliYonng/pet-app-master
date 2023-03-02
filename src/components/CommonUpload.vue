@@ -1,7 +1,7 @@
 
 <template>
 <div>
-  <el-input style="width:200px;display:block;"  v-model="imgLink" :placeholder="'输入链接或点击上传'" type="text"></el-input>
+  <el-input style="width:200px;display:block;"  v-model="imgLink" @change="handleInput" :placeholder="'输入链接或点击上传'" type="text"></el-input>
 <el-upload
     class="upload-demo"
     action="https://jsonplaceholder.typicode.com/posts/"
@@ -65,16 +65,23 @@
       handleSuccess(file,list){
         this.imgLink = list.url
         this.$emit('updateCover',this.imgLink)
+      },
+      handleInput(val){
+        this.fileList.push({
+          name:'cover',
+          url:this.imgLink
+        })
+        this.$emit('updateCover',this.imgLink)
       }
     }
   }
 </script>
 
 <style lang="less" scoped>
-    ::v-deep .el-upload{
+    :deep .el-upload{
         display:block;
     }
-    ::v-deep .el-upload-list{
+    :deep .el-upload-list{
       display:flex;
       .el-upload-list__item{
         margin-right:10px;
