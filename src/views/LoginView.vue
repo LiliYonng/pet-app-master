@@ -32,7 +32,7 @@ import { Edit, User } from "@element-plus/icons-vue";
 import { useStore } from "vuex";
 import { useRoute, useRouter } from "vue-router";
 import { getPermission } from "../../api/data";
-const form = ref({ account: "", psw: "" });
+const form = ref({ account: "admin", psw: "admin" });
 const rules = ref({
   account: [
     { required: true, message: "Please input Activity name", trigger: "blur" },
